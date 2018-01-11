@@ -28,7 +28,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Instagrid" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZOH-p2-9HR" userLabel="Instagrid Label">
-                                <rect key="frame" x="102" y="28" width="170" height="39"/>
+                                <rect key="frame" x="102.5" y="28" width="170" height="39"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="170" id="rn8-JD-FZd"/>
                                 </constraints>
@@ -36,20 +36,6 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="oOm-3M-FNR" userLabel="Swipe up Stack View">
-                                <rect key="frame" x="107" y="122" width="160.5" height="51"/>
-                                <subviews>
-                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" image="Swipe Up Symbol" translatesAutoresizingMaskIntoConstraints="NO" id="OFg-YH-69w">
-                                        <rect key="frame" x="73" y="0.0" width="15" height="10"/>
-                                    </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Swipe up to share" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Eg-PK-Eh8" userLabel="Swipe up Label">
-                                        <rect key="frame" x="0.0" y="22" width="160.5" height="29"/>
-                                        <fontDescription key="fontDescription" name="Delm-Medium" family="Delm" pointSize="26"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                            </stackView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="u2q-jV-DyO" userLabel="Grid">
                                 <rect key="frame" x="37" y="183" width="300" height="300"/>
                                 <color key="backgroundColor" red="0.091639973220000004" green="0.39402541520000001" blue="0.59610444309999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -79,22 +65,94 @@
                                         </constraints>
                                     </imageView>
                                 </subviews>
+                                <variation key="heightClass=compact-widthClass=compact" axis="vertical" spacing="30"/>
+                                <variation key="heightClass=compact-widthClass=regular" axis="vertical" spacing="30"/>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="oOm-3M-FNR" userLabel="Swipe up Stack View">
+                                <rect key="frame" x="102" y="122" width="171" height="51"/>
+                                <subviews>
+                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" image="Swipe Up Symbol" translatesAutoresizingMaskIntoConstraints="NO" id="OFg-YH-69w">
+                                        <rect key="frame" x="78" y="0.0" width="15" height="10"/>
+                                        <variation key="heightClass=compact-widthClass=compact" image="Swipe Left Symbol"/>
+                                        <variation key="heightClass=compact-widthClass=regular" image="Swipe Left Symbol"/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Swipe left to share" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Eg-PK-Eh8" userLabel="Swipe up Label">
+                                        <rect key="frame" x="0.0" y="22" width="171" height="29"/>
+                                        <fontDescription key="fontDescription" name="Delm-Medium" family="Delm" pointSize="26"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" red="0.72010022399999996" green="0.8417761922" blue="0.89805006980000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="ZOH-p2-9HR" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="8" id="1Lp-OF-g3f"/>
+                            <constraint firstItem="u2q-jV-DyO" firstAttribute="leading" secondItem="oOm-3M-FNR" secondAttribute="trailing" constant="16" id="5I8-dB-EQP"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="kbh-HR-S5w" secondAttribute="trailing" constant="47" id="6iG-fs-mZQ"/>
                             <constraint firstItem="u2q-jV-DyO" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="37" id="Dsb-id-jgu"/>
+                            <constraint firstItem="u2q-jV-DyO" firstAttribute="top" secondItem="ZOH-p2-9HR" secondAttribute="bottom" constant="9" id="G9e-Gs-XZt"/>
+                            <constraint firstItem="ZOH-p2-9HR" firstAttribute="centerX" secondItem="u2q-jV-DyO" secondAttribute="centerX" id="GJn-Lt-us9"/>
+                            <constraint firstItem="ZOH-p2-9HR" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="11" id="InZ-Dp-ahw"/>
                             <constraint firstItem="u2q-jV-DyO" firstAttribute="top" secondItem="oOm-3M-FNR" secondAttribute="bottom" constant="10" id="J0Y-AV-i3S"/>
+                            <constraint firstItem="kbh-HR-S5w" firstAttribute="top" secondItem="u2q-jV-DyO" secondAttribute="top" id="JO9-Z0-rOp"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="u2q-jV-DyO" secondAttribute="trailing" constant="38" id="KDA-cf-p7m"/>
                             <constraint firstItem="oOm-3M-FNR" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="LG5-9W-AeK"/>
+                            <constraint firstItem="kbh-HR-S5w" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="59" id="Nch-8t-co0"/>
                             <constraint firstItem="kbh-HR-S5w" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="46" id="O9i-Eu-u3l"/>
                             <constraint firstItem="oOm-3M-FNR" firstAttribute="top" secondItem="ZOH-p2-9HR" secondAttribute="bottom" constant="55" id="Og9-bO-o68"/>
+                            <constraint firstItem="kbh-HR-S5w" firstAttribute="bottom" secondItem="u2q-jV-DyO" secondAttribute="bottom" id="RHW-yV-9pO"/>
                             <constraint firstItem="ZOH-p2-9HR" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="UCY-Dl-sJB"/>
+                            <constraint firstItem="oOm-3M-FNR" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="9" id="VO4-V8-Pnf"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="kbh-HR-S5w" secondAttribute="bottom" constant="16" id="YmC-QC-fM6"/>
+                            <constraint firstItem="u2q-jV-DyO" firstAttribute="centerY" secondItem="oOm-3M-FNR" secondAttribute="centerY" id="b9d-Tu-kGY"/>
+                            <constraint firstItem="kbh-HR-S5w" firstAttribute="leading" secondItem="u2q-jV-DyO" secondAttribute="trailing" constant="49" id="caN-Cb-AO6"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="kbh-HR-S5w" secondAttribute="bottom" constant="32" id="dfU-dd-O1v"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="kbh-HR-S5w" secondAttribute="trailing" constant="42" id="jI7-35-Xwy"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="YmC-QC-fM6"/>
+                                <exclude reference="jI7-35-Xwy"/>
+                                <exclude reference="VO4-V8-Pnf"/>
+                                <exclude reference="5I8-dB-EQP"/>
+                                <exclude reference="G9e-Gs-XZt"/>
+                                <exclude reference="b9d-Tu-kGY"/>
+                                <exclude reference="GJn-Lt-us9"/>
+                                <exclude reference="InZ-Dp-ahw"/>
+                                <exclude reference="JO9-Z0-rOp"/>
+                                <exclude reference="Nch-8t-co0"/>
+                                <exclude reference="RHW-yV-9pO"/>
+                                <exclude reference="caN-Cb-AO6"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=compact">
+                            <mask key="constraints">
+                                <exclude reference="6iG-fs-mZQ"/>
+                                <exclude reference="KDA-cf-p7m"/>
+                                <include reference="YmC-QC-fM6"/>
+                                <exclude reference="dfU-dd-O1v"/>
+                                <include reference="jI7-35-Xwy"/>
+                                <exclude reference="LG5-9W-AeK"/>
+                                <exclude reference="Og9-bO-o68"/>
+                                <include reference="VO4-V8-Pnf"/>
+                                <include reference="5I8-dB-EQP"/>
+                                <exclude reference="Dsb-id-jgu"/>
+                                <include reference="G9e-Gs-XZt"/>
+                                <exclude reference="J0Y-AV-i3S"/>
+                                <include reference="b9d-Tu-kGY"/>
+                                <exclude reference="1Lp-OF-g3f"/>
+                                <include reference="GJn-Lt-us9"/>
+                                <include reference="InZ-Dp-ahw"/>
+                                <exclude reference="UCY-Dl-sJB"/>
+                                <include reference="JO9-Z0-rOp"/>
+                                <include reference="Nch-8t-co0"/>
+                                <exclude reference="O9i-Eu-u3l"/>
+                                <include reference="RHW-yV-9pO"/>
+                                <exclude reference="caN-Cb-AO6"/>
+                            </mask>
+                        </variation>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -106,6 +164,7 @@
         <image name="Layout 1" width="80" height="80"/>
         <image name="Layout 2 Selected" width="80" height="80"/>
         <image name="Layout 3" width="80" height="80"/>
+        <image name="Swipe Left Symbol" width="10" height="15"/>
         <image name="Swipe Up Symbol" width="15" height="10"/>
     </resources>
 </document>
