@@ -15,6 +15,13 @@
 		91DAC63F2006690900714623 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 91DAC63E2006690900714623 /* Default-568h@2x.png */; };
 		91DAC64320066F3C00714623 /* ThirstySoftRegular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 91DAC64120066F3B00714623 /* ThirstySoftRegular.otf */; };
 		91DAC64420066F3C00714623 /* Delm-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 91DAC64220066F3C00714623 /* Delm-Medium.otf */; };
+		91F574062007F66B00FC06FE /* GridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F574052007F66B00FC06FE /* GridView.swift */; };
+		91F574082007F70300FC06FE /* GridView1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F574072007F70300FC06FE /* GridView1.swift */; };
+		91F5740A2007F71400FC06FE /* GridView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F574092007F71400FC06FE /* GridView2.swift */; };
+		91F5740C2007F72300FC06FE /* GridView3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F5740B2007F72300FC06FE /* GridView3.swift */; };
+		91F5740E2007F7F000FC06FE /* GridView1.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91F5740D2007F7F000FC06FE /* GridView1.xib */; };
+		91F574102007F80100FC06FE /* GridView2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91F5740F2007F80100FC06FE /* GridView2.xib */; };
+		91F574122007F81500FC06FE /* GridView3.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91F574112007F81500FC06FE /* GridView3.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +35,13 @@
 		91DAC63E2006690900714623 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		91DAC64120066F3B00714623 /* ThirstySoftRegular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = ThirstySoftRegular.otf; path = ../../../../ProjectElements/ThirstySoftRegular.otf; sourceTree = "<group>"; };
 		91DAC64220066F3C00714623 /* Delm-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Delm-Medium.otf"; path = "../../../../ProjectElements/Delm-Medium.otf"; sourceTree = "<group>"; };
+		91F574052007F66B00FC06FE /* GridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridView.swift; sourceTree = "<group>"; };
+		91F574072007F70300FC06FE /* GridView1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridView1.swift; sourceTree = "<group>"; };
+		91F574092007F71400FC06FE /* GridView2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridView2.swift; sourceTree = "<group>"; };
+		91F5740B2007F72300FC06FE /* GridView3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridView3.swift; sourceTree = "<group>"; };
+		91F5740D2007F7F000FC06FE /* GridView1.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GridView1.xib; sourceTree = "<group>"; };
+		91F5740F2007F80100FC06FE /* GridView2.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GridView2.xib; sourceTree = "<group>"; };
+		91F574112007F81500FC06FE /* GridView3.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GridView3.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +106,13 @@
 			isa = PBXGroup;
 			children = (
 				91DAC62C2006679100714623 /* Main.storyboard */,
+				91F574052007F66B00FC06FE /* GridView.swift */,
+				91F574072007F70300FC06FE /* GridView1.swift */,
+				91F5740D2007F7F000FC06FE /* GridView1.xib */,
+				91F574092007F71400FC06FE /* GridView2.swift */,
+				91F5740F2007F80100FC06FE /* GridView2.xib */,
+				91F5740B2007F72300FC06FE /* GridView3.swift */,
+				91F574112007F81500FC06FE /* GridView3.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -173,11 +194,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				91DAC6332006679100714623 /* LaunchScreen.storyboard in Resources */,
+				91F574102007F80100FC06FE /* GridView2.xib in Resources */,
 				91DAC63F2006690900714623 /* Default-568h@2x.png in Resources */,
 				91DAC64420066F3C00714623 /* Delm-Medium.otf in Resources */,
 				91DAC64320066F3C00714623 /* ThirstySoftRegular.otf in Resources */,
 				91DAC6302006679100714623 /* Assets.xcassets in Resources */,
 				91DAC62E2006679100714623 /* Main.storyboard in Resources */,
+				91F5740E2007F7F000FC06FE /* GridView1.xib in Resources */,
+				91F574122007F81500FC06FE /* GridView3.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -188,7 +212,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				91F574082007F70300FC06FE /* GridView1.swift in Sources */,
+				91F5740A2007F71400FC06FE /* GridView2.swift in Sources */,
 				91DAC62B2006679100714623 /* ViewController.swift in Sources */,
+				91F574062007F66B00FC06FE /* GridView.swift in Sources */,
+				91F5740C2007F72300FC06FE /* GridView3.swift in Sources */,
 				91DAC6292006679100714623 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
