@@ -16,11 +16,11 @@ class GridView3: GridView {
     
     //Buttons
     //Top
-    @IBOutlet weak var topQuarterLeftImg: UIImageView!
-    @IBOutlet weak var topQuarterRightImg: UIImageView!
+    @IBOutlet weak var topLeftImg: UIImageView!
+    @IBOutlet weak var topRightImg: UIImageView!
     //Bottom
-    @IBOutlet weak var bottomQuarterLeftImg: UIImageView!
-    @IBOutlet weak var bottomQuarterRightImg: UIImageView!
+    @IBOutlet weak var bottomLeftImg: UIImageView!
+    @IBOutlet weak var bottomRightImg: UIImageView!
     
     //-MARK: Methods
     override func xibSetup() {

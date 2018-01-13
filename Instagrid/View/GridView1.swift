@@ -16,10 +16,10 @@ class GridView1: GridView {
     
     //Buttons
     //Top
-    @IBOutlet weak var topHalfImg: UIImageView!
+    @IBOutlet weak var topImg: UIImageView!
     //Bottom
-    @IBOutlet weak var bottomQuarterLeftImg: UIImageView!
-    @IBOutlet weak var bottomQuarterRightImg: UIImageView!
+    @IBOutlet weak var bottomLeftImg: UIImageView!
+    @IBOutlet weak var bottomRightImg: UIImageView!
     
     
     //-MARK: Methods

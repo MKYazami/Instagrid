@@ -10,7 +10,15 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="GridView3" customModule="Instagrid" customModuleProvider="target">
+            <connections>
+                <outlet property="bottomLeftImg" destination="Bgc-q7-ypa" id="nr3-jR-QZI"/>
+                <outlet property="bottomRightImg" destination="Aij-nN-Y9h" id="Uda-lt-gw9"/>
+                <outlet property="contentGridView3" destination="iN0-l3-epB" id="vcC-t2-W7c"/>
+                <outlet property="topLeftImg" destination="co4-7B-KOe" id="X3O-ZT-p7s"/>
+                <outlet property="topRightImg" destination="0YO-U1-e3h" id="qz9-lV-BH6"/>
+            </connections>
+        </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB">
             <rect key="frame" x="0.0" y="0.0" width="300" height="300"/>

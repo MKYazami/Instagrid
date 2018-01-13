@@ -75,8 +75,8 @@
 			isa = PBXGroup;
 			children = (
 				91DAC63A2006681900714623 /* Model */,
-				91DAC63D2006687400714623 /* Controller */,
 				91DAC63C2006686700714623 /* View */,
+				91DAC63D2006687400714623 /* Controller */,
 				91DAC63B2006684300714623 /* Supporting Files */,
 			);
 			path = Instagrid;
