@@ -24,6 +24,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     //The swipe gesture to share the grid as gloabal variable to get up or left direction
     var swipeGestureRecognizer: UISwipeGestureRecognizer?
     
+    //Instance of UIImagePickerController to pick the image from photo library
+    let imagePicker = UIImagePickerController()
     
     //-MARK: Methods
     
@@ -33,6 +35,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         getTapGridConfigurator()
         
         getSwipeGesture()
+        
+        //Set ViewController as delegate for the UIImagePickerController
+        imagePicker.delegate = self
     }
     
     // Make default cofiguration when startup the application
@@ -277,7 +282,15 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     private func accessPhotoLibrary() {
+        guard UIImagePickerController.isSourceTypeAvailable(.photoLibrary) else {
+            print("Error: Impossible to have access to photo library!")
+            return
+        }
         
+        imagePicker.sourceType = .photoLibrary
+        imagePicker.allowsEditing = true
+        
+        present(imagePicker, animated: true, completion: nil)
     }
 }
 
