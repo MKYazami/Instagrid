@@ -8,28 +8,130 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     //-MARK: Properties
+    
     //Images that allow to change the grid configuration
     @IBOutlet weak var gridConfigurator1: UIImageView!
     @IBOutlet weak var gridConfigurator2: UIImageView!
     @IBOutlet weak var gridConfigurator3: UIImageView!
     
     @IBOutlet weak var gridView: GridView!
+    @IBOutlet weak var swipeView: UIView!
+    @IBOutlet weak var swipeLabel: UILabel!
     
-    
-    //General tag
-    var tag: Int?
-    
+    //The swipe gesture to share the grid as gloabal variable to get up or left direction
+    var swipeGestureRecognizer: UISwipeGestureRecognizer?
     
     
     //-MARK: Methods
     
-
     override func viewDidLoad() {
         super.viewDidLoad()
+        //Get tap gestures for grid configurators
         getTapGridConfigurator()
+        
+        getSwipeGesture()
+    }
+    
+    // Make default cofiguration when startup the application
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if gridView.subviews.count == 0 {
+            setConfig2()
+        }
+    }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        
+        //Determine the swipe direction and adapt the configuration according to the device orientation
+        if UIDevice.current.orientation.isLandscape {
+            swipeGestureRecognizer?.direction = .left
+            swipeLabel.text = "Swipe left to share"
+            
+        } else if UIDevice.current.orientation.isPortrait {
+            swipeGestureRecognizer?.direction = .up
+            swipeLabel.text = "Swipe up to share"
+            
+        }
+    }
+    
+    /// Allow to get and implemente the gesture to swipe the grid
+    private func getSwipeGesture() {
+        //Set the swipe gesture recognizer
+        swipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(swipeToShare))
+        //Unwrap the swipeGestureRecognizer
+        guard let swipeGesture = swipeGestureRecognizer else { return }
+        //Give default direction to swipe
+        swipeGesture.direction = .up
+        
+        view.addGestureRecognizer(swipeGesture)
+    }
+    
+    //Method in selector of UISwipeGestureRecognizer init
+    @objc private func swipeToShare(_ swipe: UISwipeGestureRecognizer) {
+        if swipe.state == .ended {
+            //Implement condition here to make the good animation
+            if swipeGestureRecognizer?.direction == .up {
+                moveUp(swipe)
+            } else if swipeGestureRecognizer?.direction == .left {
+                moveLeft(swipe)
+            }
+        }
+    }
+    
+    /// Move up the grid and the swipe up view
+    private func moveUp(_ swipe: UISwipeGestureRecognizer) {
+        //Get translations
+        let heightScreen = UIScreen.main.bounds.height
+        
+        let upTranslation = CGAffineTransform(translationX: 0.0, y: -heightScreen - 500)
+        let scaleTranslation = CGAffineTransform(scaleX: 0.5, y: 0.5)
+        let finalTranslation = upTranslation.concatenating(scaleTranslation)
+        
+        UIView.animate(withDuration: 0.7, animations: {
+            self.gridView.transform = finalTranslation
+            self.swipeView.transform = finalTranslation
+        }) { (success) in
+            if success {
+                self.shareGrid()
+            }
+        }
+        
+    }
+    
+    /// Move left the grid and the swipe left view
+    private func moveLeft(_ swipe: UISwipeGestureRecognizer) {
+        //Get translations
+        let widthScreen = UIScreen.main.bounds.width
+        
+        let leftTranslation = CGAffineTransform(translationX: -widthScreen - 1000, y: 0.0)
+        let scaleTranslation = CGAffineTransform(scaleX: 0.3, y: 0.3)
+        let finalTranslation = leftTranslation.concatenating(scaleTranslation)
+        
+        UIView.animate(withDuration: 0.7, animations: {
+            self.gridView.transform = finalTranslation
+            self.swipeView.transform = finalTranslation
+        }) { (success) in
+            if success {
+                self.shareGrid()
+            }
+        }
+    }
+    
+    private func shareGrid() {
+        //Action to share (Will transform grid in image to share)
+        bringBackViews()
+    }
+    
+    private func bringBackViews() {
+        let delay = DispatchTime.now() + 2
+        DispatchQueue.main.asyncAfter(deadline: delay) {
+            self.gridView.transform = .identity
+            self.swipeView.transform = .identity
+        }
     }
     
     //================================================================
