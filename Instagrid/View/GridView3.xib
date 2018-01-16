@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -24,52 +25,88 @@
             <rect key="frame" x="0.0" y="0.0" width="300" height="300"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WSS-CX-lf2" userLabel="Top Left View">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WSS-CX-lf2" userLabel="Top Left View">
                     <rect key="frame" x="15" y="15" width="128" height="128"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
-                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" insetsLayoutMarginsFromSafeArea="NO" image="Quarter Add Image" translatesAutoresizingMaskIntoConstraints="NO" id="co4-7B-KOe" userLabel="Top Left Image">
+                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" image="Quarter Add Image" translatesAutoresizingMaskIntoConstraints="NO" id="co4-7B-KOe" userLabel="Top Left Image">
                             <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
-                            <autoresizingMask key="autoresizingMask"/>
                         </imageView>
                     </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="backgroundColor" red="0.94118285180000005" green="0.94116520879999999" blue="0.94117718939999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <constraints>
+                        <constraint firstItem="co4-7B-KOe" firstAttribute="leading" secondItem="WSS-CX-lf2" secondAttribute="leading" id="Hdl-E0-Lvm"/>
+                        <constraint firstAttribute="bottom" secondItem="co4-7B-KOe" secondAttribute="bottom" id="TRj-29-qiY"/>
+                        <constraint firstAttribute="trailing" secondItem="co4-7B-KOe" secondAttribute="trailing" id="m00-yl-I7d"/>
+                        <constraint firstItem="co4-7B-KOe" firstAttribute="top" secondItem="WSS-CX-lf2" secondAttribute="top" id="sOI-iz-Brw"/>
+                        <constraint firstAttribute="width" secondItem="WSS-CX-lf2" secondAttribute="height" multiplier="1:1" id="zjM-Kh-w4U"/>
+                    </constraints>
                 </view>
-                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="auu-0A-UZb" userLabel="Top Right View">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="auu-0A-UZb" userLabel="Top Right View">
                     <rect key="frame" x="157" y="15" width="128" height="128"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
-                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" insetsLayoutMarginsFromSafeArea="NO" image="Quarter Add Image" translatesAutoresizingMaskIntoConstraints="NO" id="0YO-U1-e3h" userLabel="Top Right Image">
+                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" image="Quarter Add Image" translatesAutoresizingMaskIntoConstraints="NO" id="0YO-U1-e3h" userLabel="Top Right Image">
                             <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
-                            <autoresizingMask key="autoresizingMask"/>
                         </imageView>
                     </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="backgroundColor" red="0.94118285180000005" green="0.94116520879999999" blue="0.94117718939999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <constraints>
+                        <constraint firstItem="0YO-U1-e3h" firstAttribute="leading" secondItem="auu-0A-UZb" secondAttribute="leading" id="6O6-G8-SGJ"/>
+                        <constraint firstItem="0YO-U1-e3h" firstAttribute="top" secondItem="auu-0A-UZb" secondAttribute="top" id="GNv-cV-zi4"/>
+                        <constraint firstAttribute="trailing" secondItem="0YO-U1-e3h" secondAttribute="trailing" id="Lkg-nC-RYO"/>
+                        <constraint firstAttribute="bottom" secondItem="0YO-U1-e3h" secondAttribute="bottom" id="jSf-QB-zty"/>
+                        <constraint firstAttribute="width" secondItem="auu-0A-UZb" secondAttribute="height" multiplier="1:1" id="sze-4N-xNs"/>
+                    </constraints>
                 </view>
-                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mFG-cY-k7p" userLabel="Bottom Left View">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mFG-cY-k7p" userLabel="Bottom Left View">
                     <rect key="frame" x="15" y="157" width="128" height="128"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
-                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" insetsLayoutMarginsFromSafeArea="NO" image="Quarter Add Image" translatesAutoresizingMaskIntoConstraints="NO" id="Bgc-q7-ypa" userLabel="Bottom Left Image">
+                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" image="Quarter Add Image" translatesAutoresizingMaskIntoConstraints="NO" id="Bgc-q7-ypa" userLabel="Bottom Left Image">
                             <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
-                            <autoresizingMask key="autoresizingMask"/>
                         </imageView>
                     </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="backgroundColor" red="0.94118285180000005" green="0.94116520879999999" blue="0.94117718939999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <constraints>
+                        <constraint firstItem="Bgc-q7-ypa" firstAttribute="top" secondItem="mFG-cY-k7p" secondAttribute="top" id="8tq-0A-U8q"/>
+                        <constraint firstAttribute="bottom" secondItem="Bgc-q7-ypa" secondAttribute="bottom" id="Wg7-f6-ISs"/>
+                        <constraint firstAttribute="width" secondItem="mFG-cY-k7p" secondAttribute="height" multiplier="1:1" id="eID-r6-oU0"/>
+                        <constraint firstAttribute="trailing" secondItem="Bgc-q7-ypa" secondAttribute="trailing" id="tIp-AO-NfZ"/>
+                        <constraint firstItem="Bgc-q7-ypa" firstAttribute="leading" secondItem="mFG-cY-k7p" secondAttribute="leading" id="zGV-Jb-kcv"/>
+                    </constraints>
                 </view>
-                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Unf-NP-ou0" userLabel="Bottom Right View">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Unf-NP-ou0" userLabel="Bottom Right View">
                     <rect key="frame" x="157" y="157" width="128" height="128"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
-                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" insetsLayoutMarginsFromSafeArea="NO" image="Quarter Add Image" translatesAutoresizingMaskIntoConstraints="NO" id="Aij-nN-Y9h" userLabel="Bottom Right Image">
+                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" image="Quarter Add Image" translatesAutoresizingMaskIntoConstraints="NO" id="Aij-nN-Y9h" userLabel="Bottom Right Image">
                             <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
-                            <autoresizingMask key="autoresizingMask"/>
                         </imageView>
                     </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="backgroundColor" red="0.94118285180000005" green="0.94116520879999999" blue="0.94117718939999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="Unf-NP-ou0" secondAttribute="height" multiplier="1:1" id="8iX-GF-b3U"/>
+                        <constraint firstAttribute="bottom" secondItem="Aij-nN-Y9h" secondAttribute="bottom" id="DXg-cE-JeC"/>
+                        <constraint firstAttribute="trailing" secondItem="Aij-nN-Y9h" secondAttribute="trailing" id="EFA-5o-lgl"/>
+                        <constraint firstItem="Aij-nN-Y9h" firstAttribute="top" secondItem="Unf-NP-ou0" secondAttribute="top" id="hQ7-uV-st1"/>
+                        <constraint firstItem="Aij-nN-Y9h" firstAttribute="leading" secondItem="Unf-NP-ou0" secondAttribute="leading" id="vGO-BY-0oH"/>
+                    </constraints>
                 </view>
             </subviews>
             <color key="backgroundColor" red="0.091639973220000004" green="0.39402541520000001" blue="0.59610444309999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <constraints>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="Unf-NP-ou0" secondAttribute="bottom" constant="15" id="0Kr-Pp-MMS"/>
+                <constraint firstItem="auu-0A-UZb" firstAttribute="leading" secondItem="WSS-CX-lf2" secondAttribute="trailing" constant="14" id="7SL-aj-PkI"/>
+                <constraint firstItem="mFG-cY-k7p" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="15" id="DZM-ym-8IH"/>
+                <constraint firstItem="WSS-CX-lf2" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="15" id="Fww-a4-KdX"/>
+                <constraint firstItem="Unf-NP-ou0" firstAttribute="leading" secondItem="mFG-cY-k7p" secondAttribute="trailing" constant="14" id="GNy-j8-yi4"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="auu-0A-UZb" secondAttribute="trailing" constant="15" id="IO4-4d-lVO"/>
+                <constraint firstItem="mFG-cY-k7p" firstAttribute="top" secondItem="WSS-CX-lf2" secondAttribute="bottom" constant="14" id="Lso-I8-V2c"/>
+                <constraint firstItem="Unf-NP-ou0" firstAttribute="top" secondItem="mFG-cY-k7p" secondAttribute="top" id="QLG-rX-HWG"/>
+                <constraint firstItem="Unf-NP-ou0" firstAttribute="top" secondItem="auu-0A-UZb" secondAttribute="bottom" constant="14" id="RLv-FW-OPG"/>
+                <constraint firstItem="WSS-CX-lf2" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="15" id="WgQ-JX-muZ"/>
+                <constraint firstItem="auu-0A-UZb" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="15" id="gSA-CL-aCi"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="mFG-cY-k7p" secondAttribute="bottom" constant="15" id="mrc-eX-itj"/>
+                <constraint firstItem="auu-0A-UZb" firstAttribute="bottom" secondItem="WSS-CX-lf2" secondAttribute="bottom" id="yBh-2Q-cVv"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Unf-NP-ou0" secondAttribute="trailing" constant="15" id="z9K-8u-cbr"/>
+            </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
         </view>

@@ -161,7 +161,7 @@ class ViewController: UIViewController {
         viewLoadedInGrid.bottomRightImg.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(selectImageFromLibrary)))
         
         //Add xib in grid view
-//        gridView.addSubview(viewLoadedInGrid)
+        gridView.addSubview(viewLoadedInGrid)
     }
     
     //=========================================
