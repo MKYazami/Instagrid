@@ -8,24 +8,24 @@
 
 import UIKit
 
-class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class ViewController: UIViewController {
     
     //-MARK: Properties
     
     //Images that allow to change the grid configuration
-    @IBOutlet weak var gridConfigurator1: UIImageView!
-    @IBOutlet weak var gridConfigurator2: UIImageView!
-    @IBOutlet weak var gridConfigurator3: UIImageView!
+    @IBOutlet weak private var gridConfigurator1: UIImageView!
+    @IBOutlet weak private var gridConfigurator2: UIImageView!
+    @IBOutlet weak private var gridConfigurator3: UIImageView!
     
-    @IBOutlet weak var gridView: GridView!
-    @IBOutlet weak var swipeView: UIView!
-    @IBOutlet weak var swipeLabel: UILabel!
+    @IBOutlet weak private var gridView: GridView!
+    @IBOutlet weak private var swipeView: UIView!
+    @IBOutlet weak private var swipeLabel: UILabel!
     
     //The swipe gesture to share the grid as gloabal variable to get up or left direction
-    var swipeGestureRecognizer: UISwipeGestureRecognizer?
+    private var swipeGestureRecognizer: UISwipeGestureRecognizer?
     
     //Instance of UIImagePickerController to pick the image from photo library
-    let imagePicker = UIImagePickerController()
+    fileprivate let imageToPick = UIImagePickerController()
     
     //-MARK: Methods
     
@@ -37,7 +37,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         getSwipeGesture()
         
         //Set ViewController as delegate for the UIImagePickerController
-        imagePicker.delegate = self
+        imageToPick.delegate = self
     }
     
     // Make default cofiguration when startup the application
@@ -50,7 +50,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
-        
+        //Change here for the grid problem in iPhone X
         //Determine the swipe direction and adapt the configuration according to the device orientation
         if UIDevice.current.orientation.isLandscape {
             swipeGestureRecognizer?.direction = .left
@@ -275,7 +275,12 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     //End methods set the grid configuration .\
     //=========================================
     
-    @objc private func selectImageFromLibrary() {
+    
+}
+
+
+extension ViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    @objc fileprivate func selectImageFromLibrary() {
         print("Tap Working")
         accessPhotoLibrary()
         
@@ -287,10 +292,31 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             return
         }
         
-        imagePicker.sourceType = .photoLibrary
-        imagePicker.allowsEditing = true
+        imageToPick.sourceType = .photoLibrary
+        imageToPick.allowsEditing = false
         
-        present(imagePicker, animated: true, completion: nil)
+        present(imageToPick, animated: true, completion: nil)
+    }
+    
+    //When user access to the photo library to pick image
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        defer {
+            picker.dismiss(animated: true, completion: nil)
+        }
+        
+        //Getting image from photo library
+        guard let imageFromLibrary = info[UIImagePickerControllerOriginalImage] else {
+            return
+        }
+        
+        
+    }
+    
+    //When the user cancels the action
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        defer {
+            picker.dismiss(animated: true, completion: nil)
+        }
     }
 }
 
