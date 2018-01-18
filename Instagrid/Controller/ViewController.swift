@@ -27,6 +27,9 @@ class ViewController: UIViewController {
     //Instance of UIImagePickerController to pick the image from photo library
     fileprivate let imageToPick = UIImagePickerController()
     
+    //Intermediate variable between the library and the grid images
+//    fileprivate var imageFromLibraryToGridImages: UIImage?
+    
     //-MARK: Methods
     
     override func viewDidLoad() {
@@ -62,6 +65,22 @@ class ViewController: UIViewController {
             
         }
     }
+    
+    
+//    /// Affects the image from the photo library to the images of the grid and empty the variable imageFromLibraryToGridImages
+//    ///
+//    /// - Parameter imageView: The UIImageView that have to display the image from photo library
+//    private func affectImageAndClearVariable(imageView: UIImageView) {
+//        guard let image = imageFromLibraryToGridImages else {
+//            return
+//        }
+//        imageView.image = image
+//
+//        //Afeter being affected the image
+//        defer {
+//            imageFromLibraryToGridImages = nil
+//        }
+//    }
     
     /// Allow to get and implemente the gesture to swipe the grid
     private func getSwipeGesture() {
@@ -280,13 +299,8 @@ class ViewController: UIViewController {
 
 
 extension ViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    @objc fileprivate func selectImageFromLibrary() {
-        print("Tap Working")
-        accessPhotoLibrary()
-        
-    }
     
-    private func accessPhotoLibrary() {
+    @objc fileprivate func selectImageFromLibrary() {
         guard UIImagePickerController.isSourceTypeAvailable(.photoLibrary) else {
             print("Error: Impossible to have access to photo library!")
             return
@@ -310,6 +324,7 @@ extension ViewController: UIImagePickerControllerDelegate, UINavigationControlle
         }
         
         
+//        imageFromLibraryToGridImages = imageFromLibrary as? UIImage
     }
     
     //When the user cancels the action
