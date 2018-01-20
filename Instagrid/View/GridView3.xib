@@ -28,7 +28,7 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WSS-CX-lf2" userLabel="Top Left View">
                     <rect key="frame" x="15" y="15" width="128" height="128"/>
                     <subviews>
-                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" insetsLayoutMarginsFromSafeArea="NO" image="Quarter Add Image" translatesAutoresizingMaskIntoConstraints="NO" id="co4-7B-KOe" userLabel="Top Left Image">
+                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" tag="1" contentMode="scaleAspectFill" insetsLayoutMarginsFromSafeArea="NO" image="Quarter Add Image" translatesAutoresizingMaskIntoConstraints="NO" id="co4-7B-KOe" userLabel="Top Left Image">
                             <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
                         </imageView>
                     </subviews>
@@ -44,7 +44,7 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="auu-0A-UZb" userLabel="Top Right View">
                     <rect key="frame" x="157" y="15" width="128" height="128"/>
                     <subviews>
-                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" insetsLayoutMarginsFromSafeArea="NO" image="Quarter Add Image" translatesAutoresizingMaskIntoConstraints="NO" id="0YO-U1-e3h" userLabel="Top Right Image">
+                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" tag="2" contentMode="scaleAspectFill" insetsLayoutMarginsFromSafeArea="NO" image="Quarter Add Image" translatesAutoresizingMaskIntoConstraints="NO" id="0YO-U1-e3h" userLabel="Top Right Image">
                             <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
                         </imageView>
                     </subviews>
@@ -60,7 +60,7 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mFG-cY-k7p" userLabel="Bottom Left View">
                     <rect key="frame" x="15" y="157" width="128" height="128"/>
                     <subviews>
-                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" insetsLayoutMarginsFromSafeArea="NO" image="Quarter Add Image" translatesAutoresizingMaskIntoConstraints="NO" id="Bgc-q7-ypa" userLabel="Bottom Left Image">
+                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" tag="3" contentMode="scaleAspectFill" insetsLayoutMarginsFromSafeArea="NO" image="Quarter Add Image" translatesAutoresizingMaskIntoConstraints="NO" id="Bgc-q7-ypa" userLabel="Bottom Left Image">
                             <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
                         </imageView>
                     </subviews>
@@ -76,7 +76,7 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Unf-NP-ou0" userLabel="Bottom Right View">
                     <rect key="frame" x="157" y="157" width="128" height="128"/>
                     <subviews>
-                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" insetsLayoutMarginsFromSafeArea="NO" image="Quarter Add Image" translatesAutoresizingMaskIntoConstraints="NO" id="Aij-nN-Y9h" userLabel="Bottom Right Image">
+                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" tag="4" contentMode="scaleAspectFill" insetsLayoutMarginsFromSafeArea="NO" image="Quarter Add Image" translatesAutoresizingMaskIntoConstraints="NO" id="Aij-nN-Y9h" userLabel="Bottom Right Image">
                             <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
                         </imageView>
                     </subviews>

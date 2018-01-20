@@ -30,6 +30,13 @@ class ViewController: UIViewController {
     //Intermediate variable between the library and the grid images
     fileprivate var imageFromLibraryToGridImages: UIImage?
     
+    //Allow to know from which grid config the tap gesture is did
+    fileprivate var gridConfig: GridConfig = .grid2
+    
+//    private var tag: Int?
+    
+    fileprivate var gesture: UITapGestureRecognizer?
+    
     //==============================
     //Instance of GridView1, 2 & 3 =
     //==============================
@@ -44,6 +51,14 @@ class ViewController: UIViewController {
     //==============================
     //                             =
     //==============================
+    
+    
+    enum GridConfig {
+        case grid1
+        case grid2
+        case grid3
+    }
+    
     
     //-MARK: Methods
     
@@ -261,11 +276,11 @@ class ViewController: UIViewController {
         viewLoadedInGrid1.frame = gridView.bounds
         
         //Add gestures to the images that allow to make picture selection
-        viewLoadedInGrid1.topImg.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(selectImageFromLibrary)))
+        viewLoadedInGrid1.topImg.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tapFromGrid1(gesture:))))
         
-        viewLoadedInGrid1.bottomLeftImg.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(selectImageFromLibrary)))
+        viewLoadedInGrid1.bottomLeftImg.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tapFromGrid1(gesture:))))
         
-        viewLoadedInGrid1.bottomRightImg.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(selectImageFromLibrary)))
+        viewLoadedInGrid1.bottomRightImg.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tapFromGrid1(gesture:))))
         
         //Add xib in grid view
         gridView.addSubview(viewLoadedInGrid1)
@@ -277,11 +292,11 @@ class ViewController: UIViewController {
         viewLoadedInGrid2.frame = gridView.bounds
         
         //Add gestures to the images that allow to make picture selection
-        viewLoadedInGrid2.topLeftImg.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(selectImageFromLibrary)))
+        viewLoadedInGrid2.topLeftImg.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tapFromGrid2(gesture:))))
         
-        viewLoadedInGrid2.topRightImg.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(selectImageFromLibrary)))
+        viewLoadedInGrid2.topRightImg.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tapFromGrid2(gesture:))))
         
-        viewLoadedInGrid2.bottomImg.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(selectImageFromLibrary)))
+        viewLoadedInGrid2.bottomImg.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tapFromGrid2(gesture:))))
         
         //Add xib in grid view
         gridView.addSubview(viewLoadedInGrid2)
@@ -292,13 +307,13 @@ class ViewController: UIViewController {
         viewLoadedInGrid3.frame = gridView.bounds
         
         //Add gestures to the images that allow to make picture selection
-        viewLoadedInGrid3.topLeftImg.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(selectImageFromLibrary)))
+        viewLoadedInGrid3.topLeftImg.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tapFromGrid3(gesture:))))
         
-        viewLoadedInGrid3.topRightImg.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(selectImageFromLibrary)))
+        viewLoadedInGrid3.topRightImg.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tapFromGrid3(gesture:))))
         
-        viewLoadedInGrid3.bottomLeftImg.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(selectImageFromLibrary)))
+        viewLoadedInGrid3.bottomLeftImg.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tapFromGrid3(gesture:))))
         
-        viewLoadedInGrid3.bottomRightImg.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(selectImageFromLibrary)))
+        viewLoadedInGrid3.bottomRightImg.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tapFromGrid3(gesture:))))
         
         //Add xib in grid view
         gridView.addSubview(viewLoadedInGrid3)
@@ -308,13 +323,91 @@ class ViewController: UIViewController {
     //End methods set the grid configuration .\
     //=========================================
     
+    @objc private func tapFromGrid1(gesture: UITapGestureRecognizer) {
+        gridConfig = .grid1
+        selectImageFromLibrary(gesture: gesture)
+    }
     
+    @objc private func tapFromGrid2(gesture: UITapGestureRecognizer) {
+        gridConfig = .grid2
+        selectImageFromLibrary(gesture: gesture)
+    }
+    
+    @objc private func tapFromGrid3(gesture: UITapGestureRecognizer) {
+        gridConfig = .grid3
+        selectImageFromLibrary(gesture: gesture)
+    }
+    
+    fileprivate func affectImageToGrid(gesture: UITapGestureRecognizer) {
+        switch gridConfig {
+        case .grid1:
+            affectImageToGrid1(gesture: gesture)
+        case .grid2:
+            affectImageToGrid2(gesture: gesture)
+        case .grid3:
+            affectImageToGrid3(gesture: gesture)
+        }
+    }
+    
+    private func affectImageToGrid1(gesture: UITapGestureRecognizer) {
+        guard let tag = gesture.view?.tag else { return }
+        switch tag {
+        case 1:
+            viewLoadedInGrid1.topImg.image = imageFromLibraryToGridImages
+            imageFromLibraryToGridImages = nil
+        case 2:
+            viewLoadedInGrid1.bottomLeftImg.image = imageFromLibraryToGridImages
+            imageFromLibraryToGridImages = nil
+        case 3:
+            viewLoadedInGrid1.bottomRightImg.image = imageFromLibraryToGridImages
+            imageFromLibraryToGridImages = nil
+        default:
+            break
+        }
+    }
+    
+    private func affectImageToGrid2(gesture: UITapGestureRecognizer) {
+        guard let tag = gesture.view?.tag else { return }
+        switch tag {
+        case 1:
+            viewLoadedInGrid2.topLeftImg.image = imageFromLibraryToGridImages
+            imageFromLibraryToGridImages = nil
+        case 2:
+            viewLoadedInGrid2.topRightImg.image = imageFromLibraryToGridImages
+            imageFromLibraryToGridImages = nil
+        case 3:
+            viewLoadedInGrid2.bottomImg.image = imageFromLibraryToGridImages
+            imageFromLibraryToGridImages = nil
+        default:
+            break
+        }
+    }
+    
+    private func affectImageToGrid3(gesture: UITapGestureRecognizer) {
+        guard let tag = gesture.view?.tag else { return }
+        switch tag {
+        case 1:
+            viewLoadedInGrid3.topLeftImg.image = imageFromLibraryToGridImages
+            imageFromLibraryToGridImages = nil
+        case 2:
+            viewLoadedInGrid3.topRightImg.image = imageFromLibraryToGridImages
+            imageFromLibraryToGridImages = nil
+        case 3:
+            viewLoadedInGrid3.bottomLeftImg.image = imageFromLibraryToGridImages
+            imageFromLibraryToGridImages = nil
+        case 4:
+            viewLoadedInGrid3.bottomRightImg.image = imageFromLibraryToGridImages
+            imageFromLibraryToGridImages = nil
+        default:
+            break
+        }
+    }
 }
 
 
 extension ViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
-    @objc fileprivate func selectImageFromLibrary() {
+    @objc fileprivate func selectImageFromLibrary(gesture: UITapGestureRecognizer) {
         guard UIImagePickerController.isSourceTypeAvailable(.photoLibrary) else {
             print("Error: Impossible to have access to photo library!")
             return
@@ -324,6 +417,9 @@ extension ViewController: UIImagePickerControllerDelegate, UINavigationControlle
         imageToPick.allowsEditing = false
         
         present(imageToPick, animated: true, completion: nil)
+        
+        
+        self.gesture = gesture
     }
     
     //When user access to the photo library to pick image
@@ -339,6 +435,7 @@ extension ViewController: UIImagePickerControllerDelegate, UINavigationControlle
         
         
         imageFromLibraryToGridImages = imageFromLibrary
+        affectImageToGrid(gesture: gesture!)
     }
     
     //When the user cancels the action
