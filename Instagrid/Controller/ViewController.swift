@@ -33,7 +33,6 @@ class ViewController: UIViewController {
     //Allow to know from which grid config the tap gesture is did
     fileprivate var gridConfig: GridConfig = .grid2
     
-//    private var tag: Int?
     
     fileprivate var gesture: UITapGestureRecognizer?
     
@@ -52,8 +51,10 @@ class ViewController: UIViewController {
     //                             =
     //==============================
     
+    //-MARK: Enumation
     
-    enum GridConfig {
+    ///Enumaring the grid configuration
+    fileprivate enum GridConfig {
         case grid1
         case grid2
         case grid3
@@ -96,21 +97,6 @@ class ViewController: UIViewController {
         }
     }
     
-    
-//    /// Affects the image from the photo library to the images of the grid and empty the variable imageFromLibraryToGridImages
-//    ///
-//    /// - Parameter imageView: The UIImageView that have to display the image from photo library
-//    private func affectImageAndClearVariable(imageView: UIImageView) {
-//        guard let image = imageFromLibraryToGridImages else {
-//            return
-//        }
-//        imageView.image = image
-//
-//        //Afeter being affected the image
-//        defer {
-//            imageFromLibraryToGridImages = nil
-//        }
-//    }
     
     /// Allow to get and implemente the gesture to swipe the grid
     private func getSwipeGesture() {
@@ -323,21 +309,34 @@ class ViewController: UIViewController {
     //End methods set the grid configuration .\
     //=========================================
     
+    /// Transfer the tap gesture and affect .grid1 to gridConfig
+    ///
+    /// - Parameter gesture: The tap gesture to tranfer and get the tag of the grid image
     @objc private func tapFromGrid1(gesture: UITapGestureRecognizer) {
         gridConfig = .grid1
-        selectImageFromLibrary(gesture: gesture)
+        photoLibraryAccess(gesture: gesture)
     }
     
+    /// Transfer the tap gesture and affect .grid2 to gridConfig
+    ///
+    /// - Parameter gesture: The tap gesture to tranfer and get the tag of the grid image
     @objc private func tapFromGrid2(gesture: UITapGestureRecognizer) {
         gridConfig = .grid2
-        selectImageFromLibrary(gesture: gesture)
+        photoLibraryAccess(gesture: gesture)
     }
     
+    /// Transfer the tap gesture and affect .grid3 to gridConfig
+    ///
+    /// - Parameter gesture: The tap gesture to tranfer and get the tag of the grid image
     @objc private func tapFromGrid3(gesture: UITapGestureRecognizer) {
         gridConfig = .grid3
-        selectImageFromLibrary(gesture: gesture)
+        photoLibraryAccess(gesture: gesture)
     }
     
+    
+    /// Determine from which grid the tap gesture was done
+    ///
+    /// - Parameter gesture: The tap gesture to tranfer and get the tag of the grid image
     fileprivate func affectImageToGrid(gesture: UITapGestureRecognizer) {
         switch gridConfig {
         case .grid1:
@@ -349,6 +348,9 @@ class ViewController: UIViewController {
         }
     }
     
+    /// Determine from which grid 1 image the tap gesture wase done
+    ///
+    /// - Parameter gesture: The tap gesture to get the tag of the grid image
     private func affectImageToGrid1(gesture: UITapGestureRecognizer) {
         guard let tag = gesture.view?.tag else { return }
         switch tag {
@@ -366,6 +368,9 @@ class ViewController: UIViewController {
         }
     }
     
+    /// Determine from which grid 2 image the tap gesture wase done
+    ///
+    /// - Parameter gesture: The tap gesture to get the tag of the grid image
     private func affectImageToGrid2(gesture: UITapGestureRecognizer) {
         guard let tag = gesture.view?.tag else { return }
         switch tag {
@@ -383,6 +388,9 @@ class ViewController: UIViewController {
         }
     }
     
+    /// Determine from which grid 3 image the tap gesture wase done
+    ///
+    /// - Parameter gesture: The tap gesture to get the tag of the grid image
     private func affectImageToGrid3(gesture: UITapGestureRecognizer) {
         guard let tag = gesture.view?.tag else { return }
         switch tag {
@@ -407,18 +415,22 @@ class ViewController: UIViewController {
 
 extension ViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
-    @objc fileprivate func selectImageFromLibrary(gesture: UITapGestureRecognizer) {
+     fileprivate func photoLibraryAccess(gesture: UITapGestureRecognizer) {
+        //Check if the photo library source is available
         guard UIImagePickerController.isSourceTypeAvailable(.photoLibrary) else {
             print("Error: Impossible to have access to photo library!")
             return
         }
         
+        //Affect photo library to source type
         imageToPick.sourceType = .photoLibrary
+        //Deny the image editing
         imageToPick.allowsEditing = false
         
+        //Present the image picker view controller in modal view
         present(imageToPick, animated: true, completion: nil)
         
-        
+        //Affect the  tap gesture from grid image to gesture variable to know which image was tapped
         self.gesture = gesture
     }
     
@@ -433,9 +445,11 @@ extension ViewController: UIImagePickerControllerDelegate, UINavigationControlle
             return
         }
         
-        
+        //Affecting the image to imageFromLibraryToGridImages which is a global variable to use it later
         imageFromLibraryToGridImages = imageFromLibrary
-        affectImageToGrid(gesture: gesture!)
+        
+        //Call this method that determines from which grid the tap gesture was done
+        affectImageToGrid(gesture: self.gesture!)
     }
     
     //When the user cancels the action
