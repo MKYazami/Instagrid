@@ -34,7 +34,8 @@ class ViewController: UIViewController {
     fileprivate var gridConfig: GridConfig = .grid2
     
     
-    fileprivate var gesture: UITapGestureRecognizer?
+    ///Will stock the tap gesture from grid images
+    fileprivate var tapGesture: UITapGestureRecognizer?
     
     //==============================
     //Instance of GridView1, 2 & 3 =
@@ -161,18 +162,26 @@ class ViewController: UIViewController {
         }
     }
     
-    private func shareGrid() {
-        //Action to share (Will transform grid in image to share)
-        bringBackViews()
+    /// Bring back the grid and swipe views to initial position
+    private func bringBackViews() {
+        //Get translations
+        let translation = CGAffineTransform(translationX: 0.0, y: 0.0)
+        let scaleTranslation = CGAffineTransform(scaleX: 1.0, y: 1.0)
+        let finalTranslation = translation.concatenating(scaleTranslation)
+        
+        UIView.animate(withDuration: 0.7, animations: {
+            self.gridView.transform = finalTranslation
+            self.swipeView.transform = finalTranslation
+        }) 
     }
     
-    private func bringBackViews() {
-        let delay = DispatchTime.now() + 2
-        DispatchQueue.main.asyncAfter(deadline: delay) {
-            self.gridView.transform = .identity
-            self.swipeView.transform = .identity
-        }
+    private func shareGrid() {
+        //Action to share (Will transform grid in image to share)
+        
+        bringBackViews()
+        
     }
+    
     
     //================================================================
     //Changing the grid configuration depending of the tapped images\\
@@ -196,21 +205,18 @@ class ViewController: UIViewController {
     
     //Set up grid and gridConfigurator in config 1
     @objc private func setConfig1() {
-        print("Tap Gesture1")
         setupGridConfigurator1()
         setupGridConfig1()
     }
     
     //Set up grid and gridConfigurator in config 2
     @objc private func setConfig2() {
-        print("Tap Gesture2")
         setupGridConfigurator2()
         setupGridConfig2()
     }
     
     //Set up grid and gridConfigurator in config 3
     @objc private func setConfig3() {
-        print("Tap Gesture3")
         setupGridConfigurator3()
         setupGridConfig3()
     }
@@ -431,7 +437,7 @@ extension ViewController: UIImagePickerControllerDelegate, UINavigationControlle
         present(imageToPick, animated: true, completion: nil)
         
         //Affect the  tap gesture from grid image to gesture variable to know which image was tapped
-        self.gesture = gesture
+        tapGesture = gesture
     }
     
     //When user access to the photo library to pick image
@@ -449,7 +455,7 @@ extension ViewController: UIImagePickerControllerDelegate, UINavigationControlle
         imageFromLibraryToGridImages = imageFromLibrary
         
         //Call this method that determines from which grid the tap gesture was done
-        affectImageToGrid(gesture: self.gesture!)
+        affectImageToGrid(gesture: tapGesture!)
     }
     
     //When the user cancels the action
