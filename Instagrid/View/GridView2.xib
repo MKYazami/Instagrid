@@ -83,7 +83,7 @@
                 <constraint firstItem="QJM-Yi-0gU" firstAttribute="leading" secondItem="RyX-Fp-saS" secondAttribute="leading" id="VhN-dO-Nmw"/>
                 <constraint firstItem="QJM-Yi-0gU" firstAttribute="top" secondItem="RyX-Fp-saS" secondAttribute="bottom" constant="14" id="ZeT-Zv-6TI"/>
                 <constraint firstItem="QJM-Yi-0gU" firstAttribute="trailing" secondItem="Jco-kM-Mxr" secondAttribute="trailing" id="bQm-if-JSd"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="QJM-Yi-0gU" secondAttribute="bottom" constant="15" id="eMl-LE-UQC"/>
+                <constraint firstAttribute="bottom" secondItem="QJM-Yi-0gU" secondAttribute="bottom" constant="15" id="eMl-LE-UQC"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>

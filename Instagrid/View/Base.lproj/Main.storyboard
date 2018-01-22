@@ -72,7 +72,7 @@
                                 <rect key="frame" x="107.5" y="122" width="160.5" height="51"/>
                                 <subviews>
                                     <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" image="Swipe Up Symbol" translatesAutoresizingMaskIntoConstraints="NO" id="OFg-YH-69w">
-                                        <rect key="frame" x="72.5" y="0.0" width="15" height="10"/>
+                                        <rect key="frame" x="73" y="0.0" width="15" height="10"/>
                                         <variation key="heightClass=compact-widthClass=compact" image="Swipe Left Symbol"/>
                                         <variation key="heightClass=compact-widthClass=regular" image="Swipe Left Symbol"/>
                                     </imageView>
@@ -104,7 +104,7 @@
                             <constraint firstItem="kbh-HR-S5w" firstAttribute="bottom" secondItem="u2q-jV-DyO" secondAttribute="bottom" id="RHW-yV-9pO"/>
                             <constraint firstItem="ZOH-p2-9HR" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="UCY-Dl-sJB"/>
                             <constraint firstItem="oOm-3M-FNR" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="9" id="VO4-V8-Pnf"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="kbh-HR-S5w" secondAttribute="bottom" constant="16" id="YmC-QC-fM6"/>
+                            <constraint firstAttribute="bottom" secondItem="kbh-HR-S5w" secondAttribute="bottom" constant="16" id="YmC-QC-fM6"/>
                             <constraint firstItem="u2q-jV-DyO" firstAttribute="centerY" secondItem="oOm-3M-FNR" secondAttribute="centerY" id="b9d-Tu-kGY"/>
                             <constraint firstItem="kbh-HR-S5w" firstAttribute="leading" secondItem="u2q-jV-DyO" secondAttribute="trailing" constant="49" id="caN-Cb-AO6"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="kbh-HR-S5w" secondAttribute="bottom" constant="32" id="dfU-dd-O1v"/>
