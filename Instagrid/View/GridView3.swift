@@ -36,5 +36,13 @@ class GridView3: GridView {
         addSubview(contentGridView3)
         
     }
+    
+    /// Reset the grid images as when the application started
+    func resetGridView3() {
+        topLeftImg.image = #imageLiteral(resourceName: "Quarter Add Image")
+        topRightImg.image = #imageLiteral(resourceName: "Quarter Add Image")
+        bottomLeftImg.image = #imageLiteral(resourceName: "Quarter Add Image")
+        bottomRightImg.image = #imageLiteral(resourceName: "Quarter Add Image")
+    }
 
 }

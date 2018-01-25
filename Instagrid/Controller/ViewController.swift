@@ -30,8 +30,11 @@ class ViewController: UIViewController {
     //Intermediate variable between the library and the grid images
     fileprivate var imageFromLibraryToGridImages: UIImage?
     
-    //Allow to know from which grid config the tap gesture is did
-    fileprivate var gridConfig: GridConfig = .grid2
+    //Allows to know from which grid config the tap gesture is did
+    fileprivate var gridConfigTapped: GridConfig = .grid2
+    
+    //Allows to know in which grid configuration currently we are
+    private var currentGridConfig: GridConfig = .grid2
     
     
     ///Will stock the tap gesture from grid images
@@ -85,7 +88,6 @@ class ViewController: UIViewController {
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
-        //Change here for the grid problem in iPhone X
         //Determine the swipe direction and adapt the configuration according to the device orientation
         if UIDevice.current.orientation.isLandscape {
             swipeGestureRecognizer?.direction = .left
@@ -98,6 +100,7 @@ class ViewController: UIViewController {
         }
     }
     
+    //-MARK: Swipe methods
     
     /// Allow to get and implemente the gesture to swipe the grid
     private func getSwipeGesture() {
@@ -176,12 +179,87 @@ class ViewController: UIViewController {
     }
     
     private func shareGrid() {
-        //Action to share (Will transform grid in image to share)
-        
-        bringBackViews()
-        
+        if isGridFullyFilled() {
+            //Transform grid view in image
+            let imageToShare = GridToImage(gridView: gridView)
+            let image = imageToShare.transformGridViewToImage()
+            
+            //Prepare the activity item to share
+            let activityViewController = UIActivityViewController(activityItems: [image!], applicationActivities: nil)
+            
+            //Prensent the activity controller
+            present(activityViewController, animated: true, completion: nil)
+            
+            //Bring back the grid and swipe view only if the sharing is completed or dismissed
+            activityViewController.completionWithItemsHandler = { activity, completed, items, error in
+                //If the action is cancelled, bring back the view and keep the images selected by the user
+                if !completed {
+                    self.bringBackViews()
+                }
+                //If completed bring back the views and reset the grid view images
+                if completed {
+                    self.bringBackViews()
+                    self.resetGridView()
+                }
+            }
+        } else {
+            showWarningPopup(title: "Impossible to share!", message: "Please Fill in the entire grid to share")
+        }
     }
     
+    /// Allows to determine if all grid images are filled by images from user
+    ///
+    /// - Returns: true if all grid images are filled
+    private func isGridFullyFilled() -> Bool {
+        switch currentGridConfig {
+        case .grid1:
+            if viewLoadedInGrid1.topImg.image == #imageLiteral(resourceName: "Half Add Image") || viewLoadedInGrid1.bottomLeftImg.image == #imageLiteral(resourceName: "Quarter Add Image") || viewLoadedInGrid1.bottomRightImg.image == #imageLiteral(resourceName: "Quarter Add Image") {
+                return false
+            }
+            return true
+        case .grid2:
+            if viewLoadedInGrid2.topLeftImg.image == #imageLiteral(resourceName: "Quarter Add Image") || viewLoadedInGrid2.topRightImg.image == #imageLiteral(resourceName: "Quarter Add Image") || viewLoadedInGrid2.bottomImg.image == #imageLiteral(resourceName: "Half Add Image") {
+                return false
+            }
+            return true
+        case .grid3:
+            if viewLoadedInGrid3.topLeftImg.image == #imageLiteral(resourceName: "Quarter Add Image") || viewLoadedInGrid3.topRightImg.image == #imageLiteral(resourceName: "Quarter Add Image") || viewLoadedInGrid3.bottomLeftImg.image == #imageLiteral(resourceName: "Quarter Add Image") || viewLoadedInGrid3.bottomRightImg.image == #imageLiteral(resourceName: "Quarter Add Image") {
+                return false
+            }
+            return true
+        }
+    }
+    
+    ///Reset the grid images as when the application started depending of the current grid configuration
+    private func resetGridView() {
+        switch currentGridConfig {
+        case .grid1:
+            viewLoadedInGrid1.resetGridView1()
+        case .grid2:
+            viewLoadedInGrid2.resetGridView2()
+        case .grid3:
+            viewLoadedInGrid3.resetGridView3()
+        }
+    }
+    
+    /// Show a pop up with indicating the type of warning
+    ///
+    /// - Parameters:
+    ///   - title: title of warning
+    ///   - message: message of warning
+    fileprivate func showWarningPopup(title: String, message: String) {
+        let warningMessage = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        warningMessage.addAction(UIAlertAction(title: "Okay, I understand", style: .cancel, handler: { _ in
+            warningMessage.dismiss(animated: true, completion: nil)
+            //Bring back the view after the user acknowledges the warning message
+            self.bringBackViews()
+        }))
+        
+        present(warningMessage, animated: true, completion: nil)
+    
+    }
+    
+    //-MARK: Grid view methods
     
     //================================================================
     //Changing the grid configuration depending of the tapped images\\
@@ -207,18 +285,21 @@ class ViewController: UIViewController {
     @objc private func setConfig1() {
         setupGridConfigurator1()
         setupGridConfig1()
+        currentGridConfig = .grid1
     }
     
     //Set up grid and gridConfigurator in config 2
     @objc private func setConfig2() {
         setupGridConfigurator2()
         setupGridConfig2()
+        currentGridConfig = .grid2
     }
     
     //Set up grid and gridConfigurator in config 3
     @objc private func setConfig3() {
         setupGridConfigurator3()
         setupGridConfig3()
+        currentGridConfig = .grid3
     }
     
     
@@ -319,7 +400,7 @@ class ViewController: UIViewController {
     ///
     /// - Parameter gesture: The tap gesture to tranfer and get the tag of the grid image
     @objc private func tapFromGrid1(gesture: UITapGestureRecognizer) {
-        gridConfig = .grid1
+        gridConfigTapped = .grid1
         photoLibraryAccess(gesture: gesture)
     }
     
@@ -327,7 +408,7 @@ class ViewController: UIViewController {
     ///
     /// - Parameter gesture: The tap gesture to tranfer and get the tag of the grid image
     @objc private func tapFromGrid2(gesture: UITapGestureRecognizer) {
-        gridConfig = .grid2
+        gridConfigTapped = .grid2
         photoLibraryAccess(gesture: gesture)
     }
     
@@ -335,7 +416,7 @@ class ViewController: UIViewController {
     ///
     /// - Parameter gesture: The tap gesture to tranfer and get the tag of the grid image
     @objc private func tapFromGrid3(gesture: UITapGestureRecognizer) {
-        gridConfig = .grid3
+        gridConfigTapped = .grid3
         photoLibraryAccess(gesture: gesture)
     }
     
@@ -344,7 +425,7 @@ class ViewController: UIViewController {
     ///
     /// - Parameter gesture: The tap gesture to tranfer and get the tag of the grid image
     fileprivate func affectImageToGrid(gesture: UITapGestureRecognizer) {
-        switch gridConfig {
+        switch gridConfigTapped {
         case .grid1:
             affectImageToGrid1(gesture: gesture)
         case .grid2:
@@ -418,13 +499,13 @@ class ViewController: UIViewController {
     }
 }
 
-
+//-MARK: Extensions
 extension ViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
      fileprivate func photoLibraryAccess(gesture: UITapGestureRecognizer) {
         //Check if the photo library source is available
         guard UIImagePickerController.isSourceTypeAvailable(.photoLibrary) else {
-            print("Error: Impossible to have access to photo library!")
+            showWarningPopup(title: "Warning", message: "Impossible to access to your photos library!")
             return
         }
         
@@ -463,6 +544,18 @@ extension ViewController: UIImagePickerControllerDelegate, UINavigationControlle
         defer {
             picker.dismiss(animated: true, completion: nil)
         }
+    }
+}
+
+extension UIImagePickerController {
+    //Allow to access to the photo library in all orientations (Landscape & portrait)
+    open override var shouldAutorotate: Bool {
+        return true
+    }
+    
+    //Support all orientations for all devices types
+    open override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return .all
     }
 }
 
