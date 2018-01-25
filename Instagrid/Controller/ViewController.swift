@@ -27,10 +27,10 @@ class ViewController: UIViewController {
     //Instance of UIImagePickerController to pick the image from photo library
     fileprivate let imageToPick = UIImagePickerController()
     
-    //Intermediate variable between the library and the grid images
-    fileprivate var imageFromLibraryToGridImages: UIImage?
+    //Intermediate variable between the sources and the grid images
+    fileprivate var imageFromSourceToGridImages: UIImage?
     
-    //Allows to know from which grid config the tap gesture is did
+    //Allows to know from which grid config the tap gesture is done
     fileprivate var gridConfigTapped: GridConfig = .grid2
     
     //Allows to know in which grid configuration currently we are
@@ -401,7 +401,7 @@ class ViewController: UIViewController {
     /// - Parameter gesture: The tap gesture to tranfer and get the tag of the grid image
     @objc private func tapFromGrid1(gesture: UITapGestureRecognizer) {
         gridConfigTapped = .grid1
-        photoLibraryAccess(gesture: gesture)
+        showSourcesActionSheet(gesture: gesture)
     }
     
     /// Transfer the tap gesture and affect .grid2 to gridConfig
@@ -409,7 +409,7 @@ class ViewController: UIViewController {
     /// - Parameter gesture: The tap gesture to tranfer and get the tag of the grid image
     @objc private func tapFromGrid2(gesture: UITapGestureRecognizer) {
         gridConfigTapped = .grid2
-        photoLibraryAccess(gesture: gesture)
+        showSourcesActionSheet(gesture: gesture)
     }
     
     /// Transfer the tap gesture and affect .grid3 to gridConfig
@@ -417,7 +417,31 @@ class ViewController: UIViewController {
     /// - Parameter gesture: The tap gesture to tranfer and get the tag of the grid image
     @objc private func tapFromGrid3(gesture: UITapGestureRecognizer) {
         gridConfigTapped = .grid3
-        photoLibraryAccess(gesture: gesture)
+        showSourcesActionSheet(gesture: gesture)
+    }
+    
+    /// Show the menu with the sources to pick image
+    ///
+    /// - Parameter gesture: The tap gesture to tranfer and get the tag of the grid image
+    private func showSourcesActionSheet(gesture: UITapGestureRecognizer) {
+        let actionSheet = UIAlertController(title: "Select the image from", message: "", preferredStyle: .actionSheet)
+        
+        //Prensent and give access to the photos library to pick image
+        actionSheet.addAction(UIAlertAction(title: "Photos library ", style: .default, handler: { _ in
+            self.photoLibraryAccess(gesture: gesture)
+        }))
+        
+        //Prensent and give access to the camera to pick image
+        actionSheet.addAction(UIAlertAction(title: "Camera", style: .default, handler: { _ in
+            self.cameraAccess(gesture: gesture)
+        }))
+        
+        //Cancellation
+        actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
+        //Present the action sheet
+        present(actionSheet, animated: true, completion: nil)
+        
     }
     
     
@@ -442,14 +466,14 @@ class ViewController: UIViewController {
         guard let tag = gesture.view?.tag else { return }
         switch tag {
         case 1:
-            viewLoadedInGrid1.topImg.image = imageFromLibraryToGridImages
-            imageFromLibraryToGridImages = nil
+            viewLoadedInGrid1.topImg.image = imageFromSourceToGridImages
+            imageFromSourceToGridImages = nil
         case 2:
-            viewLoadedInGrid1.bottomLeftImg.image = imageFromLibraryToGridImages
-            imageFromLibraryToGridImages = nil
+            viewLoadedInGrid1.bottomLeftImg.image = imageFromSourceToGridImages
+            imageFromSourceToGridImages = nil
         case 3:
-            viewLoadedInGrid1.bottomRightImg.image = imageFromLibraryToGridImages
-            imageFromLibraryToGridImages = nil
+            viewLoadedInGrid1.bottomRightImg.image = imageFromSourceToGridImages
+            imageFromSourceToGridImages = nil
         default:
             break
         }
@@ -462,14 +486,14 @@ class ViewController: UIViewController {
         guard let tag = gesture.view?.tag else { return }
         switch tag {
         case 1:
-            viewLoadedInGrid2.topLeftImg.image = imageFromLibraryToGridImages
-            imageFromLibraryToGridImages = nil
+            viewLoadedInGrid2.topLeftImg.image = imageFromSourceToGridImages
+            imageFromSourceToGridImages = nil
         case 2:
-            viewLoadedInGrid2.topRightImg.image = imageFromLibraryToGridImages
-            imageFromLibraryToGridImages = nil
+            viewLoadedInGrid2.topRightImg.image = imageFromSourceToGridImages
+            imageFromSourceToGridImages = nil
         case 3:
-            viewLoadedInGrid2.bottomImg.image = imageFromLibraryToGridImages
-            imageFromLibraryToGridImages = nil
+            viewLoadedInGrid2.bottomImg.image = imageFromSourceToGridImages
+            imageFromSourceToGridImages = nil
         default:
             break
         }
@@ -482,17 +506,17 @@ class ViewController: UIViewController {
         guard let tag = gesture.view?.tag else { return }
         switch tag {
         case 1:
-            viewLoadedInGrid3.topLeftImg.image = imageFromLibraryToGridImages
-            imageFromLibraryToGridImages = nil
+            viewLoadedInGrid3.topLeftImg.image = imageFromSourceToGridImages
+            imageFromSourceToGridImages = nil
         case 2:
-            viewLoadedInGrid3.topRightImg.image = imageFromLibraryToGridImages
-            imageFromLibraryToGridImages = nil
+            viewLoadedInGrid3.topRightImg.image = imageFromSourceToGridImages
+            imageFromSourceToGridImages = nil
         case 3:
-            viewLoadedInGrid3.bottomLeftImg.image = imageFromLibraryToGridImages
-            imageFromLibraryToGridImages = nil
+            viewLoadedInGrid3.bottomLeftImg.image = imageFromSourceToGridImages
+            imageFromSourceToGridImages = nil
         case 4:
-            viewLoadedInGrid3.bottomRightImg.image = imageFromLibraryToGridImages
-            imageFromLibraryToGridImages = nil
+            viewLoadedInGrid3.bottomRightImg.image = imageFromSourceToGridImages
+            imageFromSourceToGridImages = nil
         default:
             break
         }
@@ -517,7 +541,27 @@ extension ViewController: UIImagePickerControllerDelegate, UINavigationControlle
         //Present the image picker view controller in modal view
         present(imageToPick, animated: true, completion: nil)
         
-        //Affect the  tap gesture from grid image to gesture variable to know which image was tapped
+        //Affect the  tap gesture from grid image to gesture variable in order to know which image was tapped
+        tapGesture = gesture
+    }
+    
+    fileprivate func cameraAccess(gesture: UITapGestureRecognizer) {
+        //Check if the camera source is available
+        guard UIImagePickerController.isSourceTypeAvailable(.camera) else {
+            showWarningPopup(title: "Warning", message: "The camera is unavailble in your device!\n Please choose photos library to share.")
+            return
+        }
+        
+        //Affect camera to source type
+        imageToPick.sourceType = .camera
+        //Deny the image editing
+        imageToPick.allowsEditing = false
+        
+        
+        //Present the image picker view controller in modal view
+        present(imageToPick, animated: true, completion: nil)
+        
+        //Affect the  tap gesture from grid image to gesture variable in order to know which image was tapped
         tapGesture = gesture
     }
     
@@ -527,13 +571,13 @@ extension ViewController: UIImagePickerControllerDelegate, UINavigationControlle
             picker.dismiss(animated: true, completion: nil)
         }
         
-        //Getting image from photo library
-        guard let imageFromLibrary = info[UIImagePickerControllerOriginalImage] as? UIImage else {
+        //Getting image from photo source
+        guard let imageFromSource = info[UIImagePickerControllerOriginalImage] as? UIImage else {
             return
         }
         
-        //Affecting the image to imageFromLibraryToGridImages which is a global variable to use it later
-        imageFromLibraryToGridImages = imageFromLibrary
+        //Affecting the image to imageFromSourceToGridImages which is a global variable to use it later
+        imageFromSourceToGridImages = imageFromSource
         
         //Call this method that determines from which grid the tap gesture was done
         affectImageToGrid(gesture: tapGesture!)
@@ -546,6 +590,7 @@ extension ViewController: UIImagePickerControllerDelegate, UINavigationControlle
         }
     }
 }
+
 
 extension UIImagePickerController {
     //Allow to access to the photo library in all orientations (Landscape & portrait)
