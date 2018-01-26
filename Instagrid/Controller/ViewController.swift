@@ -172,11 +172,10 @@ class ViewController: UIViewController {
     private func shareGrid() {
         if isGridFullyFilled() {
             //Transform grid view in image
-            let imageToShare = GridToImage(gridView: gridView)
-            let image = imageToShare.transformGridViewToImage()
+            guard let imageToShare = ViewToImage.transformViewToImage(view: gridView) else { return }
             
             //Prepare the activity item to share
-            let activityViewController = UIActivityViewController(activityItems: [image!], applicationActivities: nil)
+            let activityViewController = UIActivityViewController(activityItems: [imageToShare], applicationActivities: nil)
             
             //Prensent the activity controller
             present(activityViewController, animated: true, completion: nil)
