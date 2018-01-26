@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9121F467201B6CD7005582E4 /* GridConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9121F466201B6CD7005582E4 /* GridConfig.swift */; };
 		9127133B20172C02001A7507 /* GridToImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9127133A20172C02001A7507 /* GridToImage.swift */; };
 		91DAC6292006679100714623 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91DAC6282006679100714623 /* AppDelegate.swift */; };
 		91DAC62B2006679100714623 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91DAC62A2006679100714623 /* ViewController.swift */; };
@@ -26,6 +27,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9121F466201B6CD7005582E4 /* GridConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridConfig.swift; sourceTree = "<group>"; };
 		9127133A20172C02001A7507 /* GridToImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridToImage.swift; sourceTree = "<group>"; };
 		91DAC6252006679100714623 /* Instagrid.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Instagrid.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		91DAC6282006679100714623 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -123,6 +125,7 @@
 		91DAC63D2006687400714623 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				9121F466201B6CD7005582E4 /* GridConfig.swift */,
 				91DAC62A2006679100714623 /* ViewController.swift */,
 			);
 			path = Controller;
@@ -222,6 +225,7 @@
 				91F574062007F66B00FC06FE /* GridView.swift in Sources */,
 				91F5740C2007F72300FC06FE /* GridView3.swift in Sources */,
 				91DAC6292006679100714623 /* AppDelegate.swift in Sources */,
+				9121F467201B6CD7005582E4 /* GridConfig.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

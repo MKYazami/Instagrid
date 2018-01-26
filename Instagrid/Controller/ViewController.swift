@@ -55,15 +55,6 @@ class ViewController: UIViewController {
     //                             =
     //==============================
     
-    //-MARK: Enumation
-    
-    ///Enumaring the grid configuration
-    fileprivate enum GridConfig {
-        case grid1
-        case grid2
-        case grid3
-    }
-    
     
     //-MARK: Methods
     
@@ -603,4 +594,3 @@ extension UIImagePickerController {
         return .all
     }
 }
-
