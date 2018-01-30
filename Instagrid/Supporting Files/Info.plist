@@ -50,5 +50,7 @@
 	<string>To get the desired photos</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>To save your images</string>
+	<key>NSCameraUsageDescription</key>
+	<string>To take photos</string>
 </dict>
 </plist>
